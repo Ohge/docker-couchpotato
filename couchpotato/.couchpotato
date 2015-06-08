@@ -26,5 +26,4 @@ if [ ! $(grep --quiet '$CONFIG_DIR' /etc/passwd) ]; then
 fi
 
 ### START SERVICE USING RUNTIME UID AND GID
-echo "Running CouchPotato!"
 exec su - $USER -c "python /opt/CouchPotatoServer/CouchPotato.py --data_dir $CONFIG_DIR --config_file $USER_CONFIG --console_log 2>&1" 2>&1
