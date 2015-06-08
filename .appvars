@@ -10,6 +10,7 @@ FETCH_VOL=/fetch
 GUI_PORT=5050
 
 ### RUNTIME VARS
+HOSTNAME=$(hostname)
 USER=$(whoami)
 IMG=$TYPE/$NAME
 APP=$USER.$NAME

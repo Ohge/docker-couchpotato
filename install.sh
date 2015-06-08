@@ -40,6 +40,7 @@ echo "Installation of gui_port $LGUI_PORT complete";
 ### RUN APP CONTAINER
 RUN=$(docker run -d \
 --name $APP \
+-h $HOSTNAME \
 -e UID=$LUID \
 -e GID=$LGID \
 -v $CONFIG_DIR:$CONFIG_VOL \
