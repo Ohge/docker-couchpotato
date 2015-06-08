@@ -1,0 +1,17 @@
+### APP VARS
+TYPE=svc
+NAME=couchpotato
+CONFIG_DIR=$HOME/.docker-couchpotato
+CONFIG_VOL=/etc/couchpotato
+USER_DIR=$HOME/downloads
+USER_VOL=/downloads
+FETCH_DIR=$HOME/fetch
+FETCH_VOL=/fetch
+GUI_PORT=5050
+
+### RUNTIME VARS
+USER=$(whoami)
+IMG=$TYPE/$NAME
+APP=$USER.$NAME
+LUID=$(id -u $USER)
+LGID=$(id -g $USER)

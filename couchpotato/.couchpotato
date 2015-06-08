@@ -1,0 +1,30 @@
+#!/bin/bash
+
+### SET VARIABLES
+USER=couchpotato
+CONFIG_DIR=/etc/couchpotato
+FETCH_DIR=/fetch
+USER_DIR=/downloads
+USER_CONFIG=$CONFIG_DIR/settings.conf
+DEFAULT_CONFIG=$CONFIG_DIR/settings.conf.default
+
+### MANAGE CONFIGS
+if [[ ! -f $USER_CONFIG ]]; then cp $DEFAULT_CONFIG $USER_CONFIG; fi
+
+### MANAGE USER AND VOLUME OWNERSHIP
+if [ ! $(grep --quiet '$CONFIG_DIR' /etc/passwd) ]; then
+  ### CREATE APPLICAITON USER
+  echo "$USER:x:$UID:$GID:$USER,,,:$CONFIG_DIR:/bin/bash" >> /etc/passwd
+  echo "$USER:x:$GID:" >> /etc/group
+  ### ASSIGN VOLUME OWNERSHIP
+  mkdir -P $CONFIG_DIR
+  mkdir -P $FETCH_DIR
+  mkdir -P $USER_DIR
+  chown $UID:$GID -R $CONFIG_DIR
+  chown $UID:$GID -R $FETCH_DIR
+  chown $UID:$GID -R $USER_DIR
+fi
+
+### START SERVICE USING RUNTIME UID AND GID
+echo "Running CouchPotato!"
+exec su - $USER -c "python /opt/CouchPotatoServer/CouchPotato.py --data_dir $CONFIG_DIR --config_file $USER_CONFIG --console_log 2>&1" 2>&1
