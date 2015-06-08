@@ -31,13 +31,13 @@ Execute the build script
 > ./uninstall.sh
 
 ## Usage
-Open your browser to start using the Transmission torrent client
+Open your browser to start using the CouchPotato webGUI
 > http://host:port
 
 ## Future releases
 -Add bookmarks RSS file to users home dir during install and uninstall of apps.
 
--Switch to init.d daemon start/stop/reload methods, and "tail -f" the transmission log file as CMD.
+-Switch to init.d daemon start/stop/reload methods, and "tail -f" the couchpotato log file as CMD.
 
 -Add external scripts to users home dir that use "docker exec" to call the start/stop/reload commands.
 
